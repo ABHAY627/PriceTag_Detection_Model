@@ -17,9 +17,7 @@ data/raw/
 data/augmented/
 data/splits/
 
-# Model weights (large binary files)
-models/checkpoints/
-models/exports/
+# Model weights (large binary files) — keep the folders, ignore weight files
 *.pt
 *.pth
 *.onnx

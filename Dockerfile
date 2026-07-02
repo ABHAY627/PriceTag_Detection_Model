@@ -20,7 +20,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy backend source
 COPY backend/ ./backend/
-COPY models/ ./models/
+
+# Create models directory structure (weights downloaded at runtime)
+RUN mkdir -p models/checkpoints models/exports
 
 # Download model weights from HuggingFace Hub at build time if HF_MODEL_REPO is set
 # (set this as a build arg in Render dashboard)
