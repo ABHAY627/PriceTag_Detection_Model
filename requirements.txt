@@ -1,23 +1,23 @@
-# ── Backend runtime deps only ──────────────────────────────────────────────────
-# (Training deps like torch/ultralytics are NOT needed on the server
-#  when running in demo mode. Add them back once you have a trained model.)
+# ── Core ML / Detection ────────────────────────────────────────────────────────
+ultralytics==8.0.227          # YOLOv8 — detection model training + inference
+torch==2.1.2                  # PyTorch (CPU build is fine for inference)
+torchvision==0.16.2
 
-# API
+# ── OCR ────────────────────────────────────────────────────────────────────────
+easyocr==1.7.1                # free local OCR, no API key needed
+
+# ── Image processing ───────────────────────────────────────────────────────────
+opencv-python==4.8.1.78
+Pillow==10.1.0
+numpy==1.26.2
+
+# ── Backend (FastAPI) ──────────────────────────────────────────────────────────
 fastapi==0.104.1
 uvicorn[standard]==0.24.0
 python-multipart==0.0.6
 pydantic==2.5.0
 
-# Image processing (lightweight)
-opencv-python-headless==4.8.1.78
-Pillow==10.1.0
-numpy==1.26.2
-
-# OCR — comment out for first deploy to keep image small, uncomment when needed
-# easyocr==1.7.1
-
-# HuggingFace model download
-huggingface_hub==0.19.4
-
-# Utils
+# ── Utilities ──────────────────────────────────────────────────────────────────
 PyYAML==6.0.1
+tqdm==4.66.1
+huggingface_hub==0.19.4
