@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.env
+.venv/
+venv/
+env/
+
+# Data (raw data stays local — don't commit large image datasets)
+data/raw/
+data/augmented/
+data/splits/
+
+# Model weights (large binary files)
+models/checkpoints/
+models/exports/
+*.pt
+*.pth
+*.onnx
+
+# Training runs
+runs/
+
+# Node / Next.js
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+
+# IDE
+.idea/
+.vscode/
+*.DS_Store
+
+# Reports (auto-generated)
+DATA_REPORT.md
+DETECTION_REPORT.md

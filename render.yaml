@@ -1,0 +1,21 @@
+# Render.com deployment config
+# Docs: https://render.com/docs/blueprint-spec
+
+services:
+  - type: web
+    name: pricetag-ocr-backend
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free                    # upgrade to 'starter' for no sleep + more RAM
+    region: oregon
+
+    # Environment variables — set values in Render dashboard (not here)
+    envVars:
+      - key: HF_MODEL_REPO
+        sync: false               # set in dashboard: your-hf-username/pricetag-model
+      - key: HF_MODEL_FILE
+        value: best.pt
+      - key: PORT
+        value: "8000"
+
+    healthCheckPath: /health

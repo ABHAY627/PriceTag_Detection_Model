@@ -1,0 +1,14 @@
+# YOLO Dataset Configuration
+# Update paths and class names to match your setup before training.
+
+path: ../data/splits          # root relative to train.py location
+train: train/images
+val: val/images
+test: test/images
+
+# Number of classes
+nc: 1
+
+# Class names — update if you have more tag types (e.g. sale_tag, clearance_tag)
+names:
+  0: price_tag

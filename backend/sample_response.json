@@ -1,0 +1,67 @@
+{
+  "image_width": 1920,
+  "image_height": 1080,
+  "tag_count": 3,
+  "tags": [
+    {
+      "tag_id": 0,
+      "bounding_box": {
+        "x1": 142.0,
+        "y1": 712.0,
+        "x2": 278.0,
+        "y2": 768.0,
+        "cx": 210.0,
+        "cy": 740.0,
+        "width": 136.0,
+        "height": 56.0
+      },
+      "detection_confidence": 0.8923,
+      "price": "2.99",
+      "raw_ocr_text": "$2.99",
+      "ocr_confidence": 0.9112,
+      "uncertain": false,
+      "ocr_preprocessing": "standard"
+    },
+    {
+      "tag_id": 1,
+      "bounding_box": {
+        "x1": 560.0,
+        "y1": 698.0,
+        "x2": 704.0,
+        "y2": 756.0,
+        "cx": 632.0,
+        "cy": 727.0,
+        "width": 144.0,
+        "height": 58.0
+      },
+      "detection_confidence": 0.7654,
+      "price": "14.99",
+      "raw_ocr_text": "14.99",
+      "ocr_confidence": 0.8401,
+      "uncertain": false,
+      "ocr_preprocessing": "standard"
+    },
+    {
+      "tag_id": 2,
+      "bounding_box": {
+        "x1": 1100.0,
+        "y1": 720.0,
+        "x2": 1228.0,
+        "y2": 775.0,
+        "cx": 1164.0,
+        "cy": 747.5,
+        "width": 128.0,
+        "height": 55.0
+      },
+      "detection_confidence": 0.6201,
+      "price": null,
+      "raw_ocr_text": "S.OO",
+      "ocr_confidence": 0.4123,
+      "uncertain": true,
+      "ocr_preprocessing": "aggressive"
+    }
+  ],
+  "processing_time_ms": 412.5,
+  "model_used": "best.pt",
+  "ocr_engine": "easyocr"
+}

@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #111110;
+  --bg-panel: #1a1a18;
+  --bg-row: #1f1f1d;
+  --border: #2e2e2b;
+  --accent: #f5c400;        /* shelf-label yellow */
+  --accent-red: #e63c2f;    /* warning/uncertain tag red */
+  --text-primary: #f0ede6;  /* off-white paper */
+  --text-secondary: #888880;
+  --text-mono: #a8e6a3;     /* green for prices — like a POS terminal */
+  --scanner-green: #00ff41;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  background-color: var(--bg);
+  color: var(--text-primary);
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Monospace for all technical/numeric content */
+.mono {
+  font-family: "JetBrains Mono", "Fira Code", "Courier New", monospace;
+  letter-spacing: 0.03em;
+}
+
+/* Scanner viewfinder border animation */
+@keyframes scanline {
+  0%   { transform: translateY(0); opacity: 0.6; }
+  50%  { opacity: 1; }
+  100% { transform: translateY(100%); opacity: 0.6; }
+}
+
+.scanline {
+  animation: scanline 2s linear infinite;
+}
+
+/* Blink for uncertain tags */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+.blink {
+  animation: blink 1.2s ease-in-out infinite;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar        { width: 6px; }
+::-webkit-scrollbar-track  { background: var(--bg); }
+::-webkit-scrollbar-thumb  { background: var(--border); border-radius: 3px; }
