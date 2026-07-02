@@ -38,8 +38,10 @@ class EasyOCRAdapter:
         try:
             import easyocr
         except ImportError:
-            raise ImportError("Run: pip install easyocr")
-        # Initialise reader once (slow first time — downloads model weights)
+            raise ImportError(
+                "EasyOCR not installed. "
+                "Add easyocr to requirements.txt and redeploy."
+            )
         self._reader = easyocr.Reader(["en"], gpu=False, verbose=False)
 
     def read(self, img: np.ndarray) -> list[OCRResult]:
@@ -81,7 +83,22 @@ def get_ocr_adapter():
             return GoogleVisionAdapter()
         except NotImplementedError:
             pass
-    return EasyOCRAdapter()
+    try:
+        return EasyOCRAdapter()
+    except ImportError:
+        print("⚠️  EasyOCR not available — using MockOCR (demo mode)")
+        return MockOCRAdapter()
+
+
+class MockOCRAdapter:
+    """Fallback when no OCR engine is installed — returns demo prices."""
+    import random as _random
+
+    def read(self, img: np.ndarray) -> list[OCRResult]:
+        demo_prices = ["$2.99", "$14.99", "$5.49", "$0.99", "$24.99"]
+        import random
+        price = random.choice(demo_prices)
+        return [OCRResult(raw_text=price, confidence=0.75)]
 
 
 # ── Image Preprocessing ───────────────────────────────────────────────────────

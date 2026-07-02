@@ -1,42 +1,32 @@
 # ── Retail Price Tag OCR — Backend Dockerfile ─────────────────────────────────
-# Base: Python 3.11 slim (keeps image size down)
 FROM python:3.11-slim
 
-# System deps needed by OpenCV + EasyOCR
-RUN apt-get update && apt-get install -y --no-install-recommends \
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+ENV DEBIAN_FRONTEND=noninteractive
+
+# System deps — minimal set that actually exists on debian slim
+RUN apt-get update && apt-get install -y \
     libglib2.0-0 \
-    libsm6 \
-    libxext6 \
-    libxrender-dev \
-    libgl1-mesa-glx \
-    wget \
+    libgomp1 \
+    libgl1 \
+    && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
-# Copy and install Python dependencies first (layer cache)
+# Install Python dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy backend source
 COPY backend/ ./backend/
 
-# Create models directory structure (weights downloaded at runtime)
+# Create models directory (weights downloaded at runtime from HuggingFace)
 RUN mkdir -p models/checkpoints models/exports
 
-# Download model weights from HuggingFace Hub at build time if HF_MODEL_REPO is set
-# (set this as a build arg in Render dashboard)
-ARG HF_MODEL_REPO=""
-ARG HF_MODEL_FILE="best.pt"
-RUN if [ -n "$HF_MODEL_REPO" ]; then \
-      pip install --no-cache-dir huggingface_hub && \
-      python -c "from huggingface_hub import hf_hub_download; \
-                 hf_hub_download(repo_id='$HF_MODEL_REPO', \
-                                 filename='$HF_MODEL_FILE', \
-                                 local_dir='models/checkpoints')"; \
-    fi
-
-# Expose FastAPI port
+# Expose port
 EXPOSE 8000
 
 # Start server

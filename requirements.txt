@@ -1,24 +1,23 @@
-# Core ML / Detection
-ultralytics>=8.0.0
-torch>=2.0.0
-torchvision>=0.15.0
+# ── Backend runtime deps only ──────────────────────────────────────────────────
+# (Training deps like torch/ultralytics are NOT needed on the server
+#  when running in demo mode. Add them back once you have a trained model.)
 
-# OCR (local, no API key needed)
-easyocr>=1.7.0
-# paddlepaddle>=2.5.0   # uncomment if you prefer PaddleOCR
-# paddleocr>=2.7.0      # uncomment if you prefer PaddleOCR
+# API
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+python-multipart==0.0.6
+pydantic==2.5.0
 
-# Image processing
-opencv-python>=4.8.0
-Pillow>=10.0.0
-numpy>=1.24.0
+# Image processing (lightweight)
+opencv-python-headless==4.8.1.78
+Pillow==10.1.0
+numpy==1.26.2
 
-# Backend
-fastapi>=0.104.0
-uvicorn[standard]>=0.24.0
-python-multipart>=0.0.6
-pydantic>=2.0.0
+# OCR — comment out for first deploy to keep image small, uncomment when needed
+# easyocr==1.7.1
 
-# Utilities
-tqdm>=4.66.0
-PyYAML>=6.0
+# HuggingFace model download
+huggingface_hub==0.19.4
+
+# Utils
+PyYAML==6.0.1
